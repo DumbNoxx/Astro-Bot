@@ -6,6 +6,11 @@ from discord.interactions import (
     Interaction,
     InteractionResponse
 )
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.all()
 intents.members = True 
@@ -17,6 +22,10 @@ bot = commands.Bot(command_prefix="&", intents=intents)
 @bot.command()
 async def ping(ctx):
    await ctx.send(f"Pong! 🏓 {round(bot.latency * 1000)}ms")
+
+@bot.command():
+async def hola(ctx):
+    await ctx.send(f"Hola {ctx.author.name}")
 
 @bot.command()
 async def informacion(ctx):
@@ -102,4 +111,4 @@ async def on_ready():
    print(f"Conectado como {bot.user}")
 
 
-bot.run("MTI2MTI2ODc1MjIxNDAwMzc3Mg.Gs7Ocy.1aLsJMzakigbm4RgZA76ielwDFsDv8628_yCj8")
+bot.run(TOKEN)
