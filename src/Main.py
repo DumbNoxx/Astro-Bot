@@ -23,7 +23,7 @@ bot = commands.Bot(command_prefix="&", intents=intents)
 async def ping(ctx):
    await ctx.send(f"Pong! 🏓 {round(bot.latency * 1000)}ms")
 
-@bot.command():
+@bot.command()
 async def hola(ctx):
     await ctx.send(f"Hola {ctx.author.name}")
 
