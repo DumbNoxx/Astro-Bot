@@ -49,7 +49,7 @@ async def ayuda(ctx):
     embed.add_field(name="&avatar",value="Muestra el avatar del usuario que menciones",inline=False)
     embed.add_field(name="&serverinfo",value="Muestra información sobre el servidor",inline=False)
     embed.add_field(name="&userinfo",value="Muestra información sobre el usuario que menciones",inline=False)
-    
+
     await ctx.send(embed=embed)
 
 @bot.tree.command(name="pong",description="Primer comando de barra")
@@ -75,7 +75,7 @@ async def userinfo(ctx,member:discord.Member = None):
     embed.add_field(name="Fecha de creación",value=member.created_at.strftime("%d/%m/%Y %H:%M:%S"))
     embed.add_field(name="Fecha de ingreso",value=member.joined_at.strftime("%d/%m/%Y %H:%M:%S"))
     embed.add_field(name="Roles",value=", ".join([role.name for role in member.roles]))
-    
+
     embed.set_thumbnail(url=member.avatar.url)
     embed.set_footer(text=f"Solicitado por {ctx.author.name}")
     await ctx.send(embed=embed)
@@ -92,7 +92,7 @@ async def serverinfo(ctx):
     embed.set_thumbnail(url=ctx.guild.icon.url)
     embed.set_footer(text=f"Solicitado por {ctx.author.name}")
     await ctx.send(embed=embed)
-    
+
 
 @bot.command(name="say")
 async def say(ctx, *, message):
