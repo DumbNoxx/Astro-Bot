@@ -16,13 +16,13 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 intents = discord.Intents.all()
 intents.members = True 
 
-
-bot = commands.Bot(command_prefix="&", intents=intents)
+prefix = "$"
+bot = commands.Bot(command_prefix=prefix, intents=intents)
 
 
 @bot.command()
 async def ping(ctx):
-   await ctx.send(f"Pong! 🏓 {round(bot.latency * 1000)}ms")
+    await ctx.send(f"Pong! 🏓 {round(bot.latency * 1000)}ms")
 
 @bot.command()
 async def hola(ctx):
@@ -39,18 +39,24 @@ async def informacion(ctx):
 
 @bot.command()
 async def saludar(ctx,member:discord.Member):
-   await ctx.send(f"<@{ctx.author.id}> saluda con creces a <@{member.id}>, how are you? 🥴")
+   await msg.send(f"<@{ctx.author.id}> saluda con creces a <@{member.id}>, how are you? 🥴")
 @bot.command()
 async def ayuda(ctx):
-    embed = discord.Embed(title="Comandos disponibles", description="Aquí están los comandos disponibles:")
-    embed.add_field(name="&ping", value="Muestra 'pong' y el ms.", inline=False)
-    embed.add_field(name="&saludar [nombre]", value="Saluda a alguien por su nombre", inline=False)
-    embed.add_field(name="&informacion",value="Muestra información sobre mí", inline=False)
-    embed.add_field(name="&ayuda",value="Muestra esta lista de comandos",inline=False)
-    embed.add_field(name="&avatar",value="Muestra el avatar del usuario que menciones",inline=False)
-    embed.add_field(name="&serverinfo",value="Muestra información sobre el servidor",inline=False)
-    embed.add_field(name="&userinfo",value="Muestra información sobre el usuario que menciones",inline=False)
+    embed = discord.Embed(title="Comandos disponibles", description="Aquí están los comandos disponibles:",color=0x00ff00)
+    embed.add_field(name=f"{prefix}ping", value="Muestra 'pong' y el ms.", inline=False)
+    embed.add_field(name=f"{prefix}saludar [nombre]", value="Saluda a alguien por su nombre", inline=False)
+    embed.add_field(name=f"{prefix}informacion",value="Muestra información sobre mí", inline=False)
+    embed.add_field(name=f"{prefix}ayuda",value="Muestra esta lista de comandos",inline=False)
+    embed.add_field(name=f"{prefix}avatar",value="Muestra el avatar del usuario que menciones",inline=False)
+    embed.add_field(name=f"{prefix}serverinfo",value="Muestra información sobre el servidor",inline=False)
+    embed.add_field(name=f"{prefix}userinfo",value="Muestra información sobre el usuario que menciones",inline=False)
+    embed.add_field(name=f"{prefix}ayuda_game",value="Muestra los comandos psrs divertirse")
+    await ctx.send(embed=embed)
 
+@bot.command()
+async def ayuda_game(ctx):
+    embed= discord.Embed(title="Comando de juegos",description="Comandos Fun",color=0x00ff00)
+    embed.add_field(name=f"{prefix}rps",value="Juega al RPS")
     await ctx.send(embed=embed)
 
 @bot.tree.command(name="pong",description="Primer comando de barra")
@@ -123,7 +129,7 @@ async def sincronizar(ctx):
 @bot.event
 async def on_ready():
    await bot.change_presence(activity=discord.Activity(
-       type=discord.ActivityType.watching, name="&ayuda"))
+       type=discord.ActivityType.watching, name=f"{prefix}ayuda"))
    print(f"Conectado como {bot.user}")
 
 
