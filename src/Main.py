@@ -8,6 +8,7 @@ from discord.interactions import (
 )
 import os
 from dotenv import load_dotenv
+import random
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -98,6 +99,21 @@ async def serverinfo(ctx):
 async def say(ctx, *, message):
     await ctx.send(message)
 
+@bot.command()
+async def rps(ctx,*,message):
+    opciones = ["tijera","piedra","papel"]
+    respuesta = message.lower()
+    ordenador = random.choice(opciones)
+    embed=discord.Embed(title="RPS Game",color=0x00ff00)
+    if respuesta not in opciones:
+      embed.add_field(name="Error!",value="Escribe Piedra, Papel o Tijera")
+    elif respuesta == ordenador:
+      embed.add_field(name=f"He sacado: {ordenador}",value="Es un Empate!!")
+    elif respuesta == "tijera" and ordenador == "piedra" or respuesta == "piedra" and ordenador == "papel" or respuesta == "papel" and ordenador == "tijera":
+      embed.add_field(name=f"{ordenador}",value="Has Perdido, lo siento")
+    else:
+      embed.add_field(name=f"He sacado: {ordenador}",value="Has Ganado, impresionante!")
+    await ctx.send(embed=embed)
 
 
 @bot.command()
