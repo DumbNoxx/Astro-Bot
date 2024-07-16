@@ -43,14 +43,14 @@ async def saludar(ctx,member:discord.Member):
 @bot.command()
 async def ayuda(ctx):
     embed = discord.Embed(title="Comandos disponibles", description="Aquí están los comandos disponibles:",color=0x00ff00)
-    embed.add_field(name=f"{prefix}ping", value="Muestra 'pong' y el ms.", inline=False)
-    embed.add_field(name=f"{prefix}saludar [nombre]", value="Saluda a alguien por su nombre", inline=False)
-    embed.add_field(name=f"{prefix}informacion",value="Muestra información sobre mí", inline=False)
-    embed.add_field(name=f"{prefix}ayuda",value="Muestra esta lista de comandos",inline=False)
-    embed.add_field(name=f"{prefix}avatar",value="Muestra el avatar del usuario que menciones",inline=False)
-    embed.add_field(name=f"{prefix}serverinfo",value="Muestra información sobre el servidor",inline=False)
-    embed.add_field(name=f"{prefix}userinfo",value="Muestra información sobre el usuario que menciones",inline=False)
-    embed.add_field(name=f"{prefix}ayuda_game",value="Muestra los comandos psrs divertirse")
+    embed.add_field(name=f"{prefix}ping", value="Muestra 'pong' y el ms.", inline=True)
+    embed.add_field(name=f"{prefix}saludar [nombre]", value="Saluda a alguien por su nombre", inline=True)
+    embed.add_field(name=f"{prefix}informacion",value="Muestra información sobre mí", inline=True)
+    embed.add_field(name=f"{prefix}ayuda",value="Muestra esta lista de comandos",inline=True)
+    embed.add_field(name=f"{prefix}avatar",value="Muestra el avatar del usuario que menciones",inline=True)
+    embed.add_field(name=f"{prefix}serverinfo",value="Muestra información sobre el servidor",inline=True)
+    embed.add_field(name=f"{prefix}userinfo",value="Muestra información sobre el usuario que menciones",inline=True)
+    embed.add_field(name=f"{prefix}ayuda_game",value="Muestra los comandos psrs divertirse",inline=True)
     await ctx.send(embed=embed)
 
 @bot.command()
@@ -89,13 +89,13 @@ async def userinfo(ctx,member:discord.Member = None):
 @bot.command()
 async def serverinfo(ctx):
     embed=discord.Embed(title=f"Información del servidor {ctx.guild.name}",color=0x00ff00)
-    embed.add_field(name="Nombre",value=ctx.guild.name,inline=False)
-    embed.add_field(name="ID",value=ctx.guild.id,inline=False)
-    embed.add_field(name="Fecha de creación",value=ctx.guild.created_at.strftime("Se creo el %d/%m/%Y a las %H:%M:%S"))
-    embed.add_field(name="Creador",value=ctx.guild.owner.name)
-    embed.add_field(name="Miembros",value=ctx.guild.member_count)
-    embed.add_field(name="Canales",value=len(ctx.guild.channels))
-    embed.add_field(name="Roles",value=len(ctx.guild.roles))
+    embed.add_field(name="🖥️Nombre",value=f"`{ctx.guild.name}`",inline=True)
+    embed.add_field(name= "🪪ID",value=f"`{ctx.guild.id}`",inline=True)
+    embed.add_field(name="🗓️Fecha de creación",value=f"`{ctx.guild.created_at.strftime('Se creo el %d/%m/%Y a las %H:%M:%S')})`",inline=True)
+    embed.add_field(name="👑Creador",value=f"`{ctx.guild.owner.name}`",inline=True)
+    embed.add_field(name="👥Miembros",value=f"`{ctx.guild.member_count}`",inline=True)
+    embed.add_field(name="Canales",value=f"`{len(ctx.guild.channels)}`",inline=True)
+    embed.add_field(name="🧾Roles",value=f"`{len(ctx.guild.roles)}`",inline=True)
     embed.set_thumbnail(url=ctx.guild.icon.url)
     embed.set_footer(text=f"Solicitado por {ctx.author.name}")
     await ctx.send(embed=embed)
@@ -104,6 +104,7 @@ async def serverinfo(ctx):
 @bot.command(name="say")
 async def say(ctx, *, message):
     await ctx.send(message)
+    await ctx.message.delete()
 
 @bot.command()
 async def rps(ctx,*,message):
@@ -122,15 +123,15 @@ async def rps(ctx,*,message):
     await ctx.send(embed=embed)
 
 
+
 @bot.command()
 async def sincronizar(ctx):
     await bot.tree.sync()
     await ctx.send("Listo!")
 @bot.event
 async def on_ready():
-   await bot.change_presence(activity=discord.Activity(
-       type=discord.ActivityType.watching, name=f"{prefix}ayuda"))
-   print(f"Conectado como {bot.user}")
+   await bot.change_presence(activity=discord.Streaming(name="Desarrollando",url="https://twitch.tv/username"))
+   print(f"Conectado como {bot.user.name}")
 
 
 bot.run(TOKEN)
