@@ -17,4 +17,4 @@ Que estusiaste soy, ¿eh? xD
 
 Bueno he avanzando otro poco, pronto seguiré aumentando las cositas uwu
 
-<5><b>Archivo README editado el 19/07/24 a las 6 pm</b></h5>
+<h5><b>Archivo README editado el 19/07/24 a las 6 pm</b></h5>
