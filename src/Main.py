@@ -161,14 +161,22 @@ class Menu(discord.ui.View):
         super().__init__()
         self.value = None
 
-    @discord.ui.button(label="Enviar mensaje",style=discord.ButtonStyle.green)
+    @discord.ui.button(label="Retroceder",style=discord.ButtonStyle.green)
     async def menu1(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message("Hola me has clickeado!!")
+    @discord.ui.button(label="Avanzar",style=discord.ButtonStyle.blurple)
+    async def menu2(self, interaction: discord.Interaction, button: discord.ui.Button):
+        embed=discord.Embed(title="Menu 2",color=discord.Color.random())
+        embed.add_field(name="$rps",value="Juega un rato")
+        await interaction.response.edit_message(embed=embed)
 
 @bot.command()
 async def menu(ctx):
+    embed = discord.Embed(title="Menu de Astro",color=discord.Color.random())
+    embed.add_field(name="$ayuda",value="Ve los comandos de ayuda de Astro")
+    embed.add_field(name="$say",value="Habla como si fueras Astro!!")
     view = Menu()
-    await ctx.reply(view=view)
+    await ctx.reply(embed=embed,view=view)
 
 
 
