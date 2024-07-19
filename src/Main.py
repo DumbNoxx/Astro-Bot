@@ -106,6 +106,8 @@ async def say(ctx, *, message):
     await ctx.send(message)
     await ctx.message.delete()
 
+
+#Comandos de juegos
 @bot.command()
 async def rps(ctx,*,message):
     opciones = ["tijera","piedra","papel"]
@@ -121,6 +123,26 @@ async def rps(ctx,*,message):
     else:
       embed.add_field(name=f"He sacado: {ordenador}",value="Has Ganado, impresionante!")
     await ctx.send(embed=embed)
+@bot.command()
+async def numeromagico(ctx,*,message):
+    opcion = random.randint(1,101)
+    res = message
+    respuesta = int(res)
+
+    if respuesta > 100:
+        await ctx.send("El numero debe de estar en el rango de 1 a 100")
+    elif respuesta > opcion:
+        await ctx.send("El numero que elegiste es muy alto")
+    elif respuesta < opcion:
+        await ctx.send("El numero que elegiste es muy bajo")
+    else:
+        await ctx.send("Acertaste, numero correcto")
+
+
+@bot.command()
+async def prueba(ctx):
+    hola = "Hola"
+    await create_dm(user)
 
 
 
@@ -132,6 +154,24 @@ async def sincronizar(ctx):
 async def on_ready():
    await bot.change_presence(activity=discord.Streaming(name="Desarrollando",url="https://twitch.tv/username"))
    print(f"Conectado como {bot.user.name}")
+
+
+class Menu(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.value = None
+
+    @discord.ui.button(label="Enviar mensaje",style=discord.ButtonStyle.green)
+    async def menu1(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_message("Hola me has clickeado!!")
+
+@bot.command()
+async def menu(ctx):
+    view = Menu()
+    await ctx.reply(view=view)
+
+
+
 
 
 bot.run(TOKEN)
