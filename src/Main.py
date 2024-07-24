@@ -149,7 +149,7 @@ async def prueba(ctx):
 @bot.command()
 async def sincronizar(ctx):
     await bot.tree.sync()
-    await ctx.send("Listo!")
+    await ctx.send("Todo listo")
 @bot.event
 async def on_ready():
    await bot.change_presence(activity=discord.Streaming(name="Desarrollando",url="https://twitch.tv/username"))
