@@ -18,3 +18,12 @@ Que estusiaste soy, ¿eh? xD
 Bueno he avanzando otro poco, pronto seguiré aumentando las cositas uwu
 
 <h5><b>Archivo README editado el 19/07/24 a las 6 pm</b></h5>
+
+<h2>Activo 24/7</h2>
+
+Es de mi agrado informar que Astro ya esta activo 24/7, ya tiene soporte para estar activo
+estoy usando los servidores de Kiaura, te dejo su server de discord por aca por si quieres pasarte
+y comprar un hosting para un server de Minecraft o um bot de discord.
+
+<a href="https://discord.com/invite/NmUTuQbC">Kiaura discord server</a>
+
