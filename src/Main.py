@@ -138,14 +138,6 @@ async def numeromagico(ctx,*,message):
     else:
         await ctx.send("Acertaste, numero correcto")
 
-
-@bot.command()
-async def prueba(ctx):
-    hola = "Hola"
-    await create_dm(user)
-
-
-
 @bot.command()
 async def sincronizar(ctx):
     await bot.tree.sync()
