@@ -39,7 +39,7 @@ async def informacion(ctx):
 
 @bot.command()
 async def saludar(ctx,member:discord.Member):
-   await msg.send(f"<@{ctx.author.id}> saluda con creces a <@{member.id}>, how are you? 🥴")
+   await ctx.send(f"<@{ctx.author.id}> saluda con creces a <@{member.id}>, how are you? 🥴")
 @bot.command()
 async def ayuda(ctx):
     embed = discord.Embed(title="Comandos disponibles", description="Aquí están los comandos disponibles:",color=0x00ff00)
